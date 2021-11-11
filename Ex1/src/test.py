@@ -8,7 +8,7 @@ from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
 def elevator_assignment(file1, file2):
     calls = ListOfCallForElevator(file1)
     for k in range(len(calls.Call)):
-        calls.Call[k][5] = 0
+        calls.Call[k].index = 0
 
     with open(file2, 'w', newline="") as f:
         writer = csv.writer(f)
