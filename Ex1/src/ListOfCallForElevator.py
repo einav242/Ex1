@@ -8,6 +8,6 @@ class ListOfCallForElevator:
 
         with open(file_csv) as f:
             reader = csv.reader(f)
-            self_Call = []
+            self._Call = []
             for rows in reader:
-                self_Call.append(CallForElevator(rows))
+                self._Call.append(CallForElevator(rows))

@@ -11,8 +11,8 @@ class SmartElevatorAlgo:
         self._output = output
 
 
-   # def elevator_assignment(self):
-        #for k in self._list_of_call:
+  #  def elevator_assignment(self):
+
 
 
 
