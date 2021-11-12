@@ -1,4 +1,3 @@
-
 import csv
 
 from Ex1.src.Building import Building
@@ -17,13 +16,9 @@ class SmartElevatorAlgo:
         return iter([self._building, self._list_of_call, self.output])
 
     def elevator_assignment(self):
-        for k in self.list_of_call:
+        for k in range(len(self.list_of_call.Call)):
             self.list_of_call.Call[k].index = 0
 
         with open(self.output, 'w', newline="") as f:
             writer = csv.writer(f)
             writer.writerows(self.list_of_call.Call)
-
-
-
-
