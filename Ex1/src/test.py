@@ -15,6 +15,6 @@ def elevator_assignment(file1, file2):
         writer.writerows(calls.Call)
 
 
-
 if __name__ == '__main__':
-    elevator_assignment("Calls_a.csv", "output.csv")
+    algo = SmartElevatorAlgo("B1.json", "Calls_a.csv", "output.csv")
+    algo.elevator_assignment()
