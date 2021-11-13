@@ -5,6 +5,8 @@ from Ex1.src.Building import Building
 from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
 
 
+
+
 class SmartElevatorAlgo:
 
     def __init__(self, building, calls, output):
@@ -22,3 +24,5 @@ class SmartElevatorAlgo:
         with open(self.output, 'w', newline="") as f:
             writer = csv.writer(f)
             writer.writerows(self.list_of_call.Call)
+
+
