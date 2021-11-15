@@ -15,3 +15,8 @@ class ListOfCallForElevator:
         for k in range(len(self.Call)):
             return iter(self.Call(k))
 
+    def __str__(self):
+        st = ""
+        for k in range(len(self.Call)):
+            st += str(self.Call[k])
+        return st
