@@ -36,36 +36,34 @@ class SmartElevatorAlgo:
                     for k in range(j + 1, len(self.list_of_call.Call)):  # **
                         curr_temp = self.list_of_call[i]
                         next_curr = self.list_of_call[k]
-                        if next_curr.id == -1:
-                            if curr_temp.direction() == next_curr.direction():
-                                if curr_temp.dest == next_curr.dest:
-                                    if curr_temp.direction() == 1:  # up
-                                        if self.check_path(curr_temp, next_curr, k):
-                                            if curr_temp.index == -1:
-                                                for m in range(len(self.building.elevators)):
-                                                    T = self.building.elevators[m].time_of_path(curr_temp.src,
-                                                                                                next_curr.src)
-                                                    T += curr_temp.time
-                                                    t = next_curr.time
-                                                    if T >= t:
-                                                        curr_temp.index = m
-                                                        next_curr.index = m
-                                                        next_curr.id = curr.id
-                                                        curr_temp.dest = next_curr.src
-                                                        i = k
-                                                        new_list.append(curr_temp, next_curr)
-                                            else:
-                                                T = self.building.elevators[curr_temp.index].time_of_path(curr_temp.src,
-                                                                                                          next_curr.src)
-                                                T += curr_temp.time
+                        if next_curr.id == -1 and curr_temp.direction() == next_curr.direction() \
+                                and curr_temp.dest == next_curr.dest:
+                            if self.check_path(curr_temp, next_curr, k):
+                                if next_curr.id == -1 and curr_temp.index == -1:
+                                    for m in range(len(self.building.elevators)):
+                                        T = self.building.elevators[m].time_of_path(curr_temp.src,
+                                                                                    next_curr.src)
+                                        T += curr_temp.time
+                                        t = next_curr.time
+                                        if T >= t:
+                                            curr_temp.index = m
+                                            next_curr.index = m
+                                            next_curr.id = curr.id
+                                            curr_temp.dest = next_curr.src
+                                            i = k
+                                            new_list.append(curr_temp, next_curr)
+                                else:
+                                    T = self.building.elevators[curr_temp.index].time_of_path(curr_temp.src,
+                                                                                              next_curr.src)
+                                    T += curr_temp.time
 
-                                                t = next_curr.time
-                                                if T >= t:
-                                                    next_curr.index = curr_temp.index
-                                                    next_curr.id = curr.id
-                                                    curr_temp.dest = next_curr.src
-                                                    i = k
-                                                    new_list.append(curr_temp, next_curr)
+                                    t = next_curr.time
+                                    if T >= t:
+                                        next_curr.index = curr_temp.index
+                                        next_curr.id = curr.id
+                                        curr_temp.dest = next_curr.src
+                                        i = k
+                                        new_list.append(curr_temp, next_curr)
 
         for k in range(len(self.list_of_call)):
             e = -1
@@ -86,7 +84,7 @@ class SmartElevatorAlgo:
         if call1.direction == 1:  # up
             if call1.src <= call2.src:
                 return True
-            else:
+            elif call1.index != -1:
                 m = k
                 while m > 0:
                     if self.list_of_call[m].id == self.list_of_call[m - 1].id:
@@ -97,28 +95,27 @@ class SmartElevatorAlgo:
         else:
             if call1.src >= call2.src:
                 return True
-            else:
+            elif call1.index != -1:
                 m = k
                 while m > 0:
                     if self.list_of_call.Call[m].id == self.list_of_call.Call[m - 1].id:
                         if self.list_of_call.Call[m - 1].src >= call2.src:
+                            self.check_time(self.list_of_call[m - 1], call2, self.list_of_call[m], call1.index)
                             return True
                     m -= 1
 
         return False
 
-    def check_time(self, call1, call2, call3) -> int:
-        for m in range(len(self.building.elevators)):
-            T = self.building.elevators[m].time_of_path(call1.src,
-                                                        call2.src)
-            T += call1.time
-            t = call2.time
-            if T >= t:
-                call1.index = m
-                call2.index = m
-                call2.id = call1.id
-                call1.dest = call2.src
-                call2.dest = call3.src
+    def check_time(self, call1, call2, call3, e) -> int:
+        T = self.building.elevators[e].time_of_path(call1.src, call2.src)
+        T += call1.time
+        t = call2.time
+        if T >= t:
+            call2.index = e
+            call2.id = call1.id
+            call1.dest = call2.src
+            call2.dest = call3.src
+            self.building.elevators[e].list_elev.append(call2)
 
     # with open(self.output, 'w', newline="") as f:
     #    writer = csv.writer(f)
