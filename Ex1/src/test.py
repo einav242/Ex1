@@ -17,7 +17,7 @@ def elevator_assignment(file1, file2):
 
 
 if __name__ == '__main__':
-    algo = SmartElevatorAlgo("B1.json", "Calls_a.csv", "output.csv")
+    algo = SmartElevatorAlgo("B4.json", "Calls_d.csv", "output.csv")
     algo.elevator_assignment()
     print(len(algo.list_of_call))
     for i in range(len(algo.building.elevators)):
