@@ -74,8 +74,11 @@ class SmartElevatorAlgo:
                     t1 = self.building.elevators[i].time()
                     t2 = self.building.elevators[i].time_of_path(self.list_of_call[k].src,
                                                                  self.list_of_call[k].dest)
-                    last_call = self.building.elevators[i].list_elev[len(self.building.elevators[i].list_elev) - 1]
-                    t3 = self.building.elevators[i].time_of_path(last_call.dest, self.list_of_call[k].src)
+                    if len(self.building.elevators[i].list_elev) > 0:
+                        last_call = self.building.elevators[i].list_elev[len(self.building.elevators[i].list_elev) - 1]
+                        t3 = self.building.elevators[i].time_of_path(last_call.dest, self.list_of_call[k].src)
+                    else:
+                        t3 = self.building.elevators[i].time_of_path(0, self.list_of_call[k].src)
                     t123 = t1 + t2 + t3
                     if t123 < min_time:
                         min_time = t123
@@ -92,9 +95,9 @@ class SmartElevatorAlgo:
             if call1.src <= call2.src:
                 return True
             elif call1.index != -1:
-                print(call1.index)
-                print("list number ", call1.index, " :", self.building.elevators[call1.index])
-                print(call1)
+                # print(call1.index)
+                # print("list number ", call1.index, " :", self.building.elevators[call1.index])
+                # print(call1)
                 m = k
                 while m > 0:
                     if call1.id == self.list_of_call[m - 1].id:
@@ -106,9 +109,9 @@ class SmartElevatorAlgo:
             if call1.src >= call2.src:
                 return True
             elif call1.index != -1:
-                print(call1.index)
-                print("list number ", call1.index, " :", self.building.elevators[call1.index])
-                print(call1)
+                # print(call1.index)
+                # print("list number ", call1.index, " :", self.building.elevators[call1.index])
+                # print(call1)
                 m = k
                 while m > 0:
                     if call1.id == self.list_of_call[m - 1].id:
@@ -129,7 +132,7 @@ class SmartElevatorAlgo:
             temp = call1.dest
             call1.dest = call2.src
             call2.dest = temp
-            print(call1.index)
+            # print(call1.index)
             ind = self.building.elevators[e].list_elev.index(call1)
             self.building.elevators[e].list_elev.insert(ind + 1, call2)
             return True
