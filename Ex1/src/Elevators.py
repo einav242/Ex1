@@ -11,7 +11,7 @@ class Elevators:
         self._openTime = float(di["_openTime"])  # open time
         self._startTime = float(di["_startTime"])  # startTime
         self._stopTime = float(di["_stopTime"])  # stopTime
-        self.list_elev = [CallForElevator]
+        self.list_elev = []
 
     def time(self) -> float:  # the time of all the call of this elevator
         floor_start = self.list_elev[0].src
@@ -32,5 +32,7 @@ class Elevators:
             return iter(self.list_elev(k))
 
     def __str__(self):
+        st = ""
         for k in range(len(self.list_elev)):
-            return str(self.list_elev(k))
+            st += str(self.list_elev[k])
+        return st

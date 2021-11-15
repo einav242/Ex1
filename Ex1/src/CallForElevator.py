@@ -11,6 +11,10 @@ class CallForElevator:
     def __iter__(self):
         return iter([self.str, self.time, self.src, self.dest, self.status, self.index])
 
+    def __str__(self):
+        return str(self.str) + " " + str(self.time) + " " + str(self.src) + " " + str(self.dest) + " " \
+               + str(self.status) + " " + str(self.index) + " " + str(self.id) + ", "
+
     def direction(self) -> int:  # 1=up,0=down
         if self.src < self.dest:
             return 1
