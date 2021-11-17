@@ -6,9 +6,9 @@ public class Ex1_tester {
             args = new String[4];
             args[0] = "123456789";
             args[1] = "data/B2.json";
-            args[2] = "data/Ex1_Calls_case_2_b.csv";
+            args[2] = "output";
             long time = System.currentTimeMillis();
-            args[3] = "out/Ex1_report_case_" + "_" + time + "_ID_.log";
+            args[3] = "out/Ex1_report_case_a" + "_" + time + "_ID_.log";
         }
         Ex1_main.main(args);
     }

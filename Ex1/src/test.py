@@ -1,7 +1,7 @@
 import csv
 import sys
 
-from Ex1.src.SmartElevatorAlgo import SmartElevatorAlgo
+from Ex1.src.Ex1_main import SmartElevatorAlgo
 from Ex1.src.CallForElevator import CallForElevator
 from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
 
@@ -17,8 +17,10 @@ def elevator_assignment(file1, file2):
 
 
 if __name__ == '__main__':
-    algo = SmartElevatorAlgo("B4.json", "Calls_d.csv", "output.csv")
+    algo = SmartElevatorAlgo("B1.json", "Calls_a.csv", "output.csv")
     algo.elevator_assignment()
     print(len(algo.list_of_call))
+    #print(algo.list_of_call[1].id)
+    #print(algo.building.elevators[7].list_elev.index(algo.list_of_call[1]))
     for i in range(len(algo.building.elevators)):
         print("elevator number : ", i, algo.building.elevators[i])
