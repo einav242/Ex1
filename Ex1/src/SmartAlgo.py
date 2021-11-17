@@ -2,19 +2,17 @@ import csv
 import sys
 
 from Ex1.src.Building import Building
-
 from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
 
 
 class SmartElevatorAlgo:
 
-    def __init__(self, building, calls, output):
+    def __init__(self, building, calls):
         self.building = Building(building)
         self.list_of_call = ListOfCallForElevator(calls).Call
-        self.output = output
 
     def __iter__(self):
-        return iter([self.building, self.list_of_call, self.output])
+        return iter([self.building, self.list_of_call])
 
     def elevator_assignment(self):
         ID = 0
@@ -53,18 +51,8 @@ class SmartElevatorAlgo:
                                         next_curr.id = curr_temp.id
                                         curr_temp.dest = next_curr.src
                                         i = k
-                                        if len(self.building.elevators[e].list_elev) > 0:
-                                            time_first = self.building.elevators[e].list_elev[0].time
-                                        else:
-                                            time_first = -1
-                                        this_time = curr_temp.time
-
-                                        if time_first > this_time:
-                                            self.building.elevators[e].list_elev.insert(0, curr_temp)
-                                            self.building.elevators[e].list_elev.insert(1, next_curr)
-                                        else:
-                                            self.building.elevators[e].list_elev.append(curr_temp)
-                                            self.building.elevators[e].list_elev.append(next_curr)
+                                        self.building.elevators[e].list_elev.append(curr_temp)
+                                        self.building.elevators[e].list_elev.append(next_curr)
                                 elif curr_temp.index != -1 and next_curr.index == -1:
                                     e = curr_temp.index
                                     T = self.building.elevators[e].time_of_path(curr_temp.src, next_curr.src)
@@ -85,35 +73,11 @@ class SmartElevatorAlgo:
             min_call = sys.maxsize
             if self.list_of_call[k].index == -1:
                 for i in range(len(self.building.elevators)):
-
-                    t1 = self.building.elevators[i].time()
-                    t2 = self.building.elevators[i].time_of_path(self.list_of_call[k].src,
-                                                                 self.list_of_call[k].dest)
-                    if len(self.building.elevators[i].list_elev) > 0:
-                        last_call = self.building.elevators[i].list_elev[len(self.building.elevators[i].list_elev) - 1]
-                        t3 = self.building.elevators[i].time_of_path(last_call.dest, self.list_of_call[k].src)
-                    else:
-                        t3 = self.building.elevators[i].time_of_path(0, self.list_of_call[k].src)
-                    t123 = t1 + t2 + t3
                     if len(self.building.elevators[i].list_elev) < min_call:
                         min_call = len(self.building.elevators[i].list_elev)
                         e = i
-
                 self.list_of_call[k].index = e
-                if len(self.building.elevators[e].list_elev) > 0:
-                    time_first = self.building.elevators[e].list_elev[0].time
-                else:
-                    time_first = -1
-                this_time = self.list_of_call[k].time
-
-                if time_first > this_time:
-                    self.building.elevators[e].list_elev.insert(0, self.list_of_call[k])
-                else:
-                    self.building.elevators[e].list_elev.append(self.list_of_call[k])
-
-        with open(self.output, 'w', newline="") as f:
-            writer = csv.writer(f)
-            writer.writerows(self.list_of_call)
+                self.building.elevators[e].list_elev.append(self.list_of_call[k])
 
     def check_path(self, call1, call2, k) -> bool:
         if call1.direction == 1:  # up
