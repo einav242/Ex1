@@ -11,18 +11,6 @@ class Elevators:
         self._stopTime = float(di["_stopTime"])  # stopTime
         self.list_elev = []
 
-    def time(self) -> float:  # the time of all the call of this elevator
-        total_time = 0
-        if len(self.list_elev) > 0:
-            floor_start = self.list_elev[0].src
-            if self.list_elev[0].src != 0:
-                time = floor_start / self._speed + self._stopTime + self._startTime + self._openTime + self._closeTime
-            for k in range(len(self.list_elev)):
-                time = + self.time_of_path(self.list_elev[k].src, self.list_elev[k].dest)
-            total_time = total_time + time
-
-        return total_time
-
     def time_of_path(self, src, dest) -> float:
         floor = abs(src - dest)
         if floor != 0:
@@ -44,6 +32,6 @@ class Elevators:
     def counter_dir(self, direction):
         count = 0
         for k in range(len(self.list_elev)):
-            if self.list_elev[k].direction == direction:
+            if self.list_elev[k].direction() == direction:
                 count += 1
         return count

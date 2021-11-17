@@ -7,9 +7,10 @@ from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
 
 class SmartElevatorAlgo:
 
-    def __init__(self, building, calls):
+    def __init__(self, building, calls, output):
         self.building = Building(building)
         self.list_of_call = ListOfCallForElevator(calls).Call
+        self.output = output
 
     def __iter__(self):
         return iter([self.building, self.list_of_call])
@@ -28,7 +29,7 @@ class SmartElevatorAlgo:
                     curr.id = ID
                     ID += 1
                     i = j
-                    for k in range(j + 1, len(self.list_of_call)):  # **
+                    for k in range(j + 1, len(self.list_of_call)):
                         curr_temp = self.list_of_call[i]
                         next_curr = self.list_of_call[k]
                         if next_curr.id == -1 and curr_temp.direction() == next_curr.direction() \
@@ -78,6 +79,7 @@ class SmartElevatorAlgo:
                         e = i
                 self.list_of_call[k].index = e
                 self.building.elevators[e].list_elev.append(self.list_of_call[k])
+        self.write_calls()
 
     def check_path(self, call1, call2, k) -> bool:
         if call1.direction == 1:  # up
@@ -118,3 +120,8 @@ class SmartElevatorAlgo:
             call2.dest = temp
             self.building.elevators[e].list_elev.insert(ind + 1, call2)
             return True
+
+    def write_calls(self):
+        with open(self.output, 'w', newline="") as f:
+            writer = csv.writer(f)
+            writer.writerows(self.list_of_call)
