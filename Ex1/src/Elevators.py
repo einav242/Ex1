@@ -1,5 +1,3 @@
-from Ex1.src.CallForElevator import CallForElevator
-
 
 class Elevators:
     def __init__(self, di):
