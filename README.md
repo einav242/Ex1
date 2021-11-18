@@ -1,4 +1,4 @@
-## Ex1
+# Ex1
 Our project presents an implementation of the offline algorithm of a smart elevator system in a high-rise building, using an efficient data structure with the aim that the entire waiting for the elevator will be reduced to a minimum.
 
 First link: https://e-space.mmu.ac.uk/617034/1/WCE2016_pp671-673.pdf The article shows the problems that currently exists with the unwise elevators, such as congestion inside one of the elevators or Long time of waiting and standing inside the elevator. The article shows a solution that uses Artificial intelligence, and although in this task we do not touch artificial intelligence, the article helps us understand the The main problems that there are in the elevators are old and thus helps us find an effective solution that will solve these problems.
@@ -7,7 +7,7 @@ second link: https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9003300 This a
 
 three link: https://www.cs.huji.ac.il/~ai/projects/2014/The_intelevator/files/report.pdf This article talks about online algorithms versus offline algorithms for the problem of elevator scheduling , The article presents the problem of scheduling the elevator "in the best possible way" which online algorithm is best suited , and to define the best interests of the offline algorithm, this article helps us understand the deliberate and unintentional algorithm that we are required to write in part of the task.
 
-# The off-line algorithm: 
+## The off-line algorithm: 
 the main idea of the algorithm is to generate from all the calls we received as many routes as possible and divide them equally between the elevators.
 Route definition: calls A and B on the same route is they both travel in the same direction , both have the same destination, the elevator does not have to change the direction to reach on of them, its mean that if the direction of the calls is up and the call A was called first them I need to check if the source floor of B more height from the source floor of A, when the direction is down I need to check  if the source floor of B more lower from the source floor of A.
 In addition, in order for both calls to be on the same route assuming that A call was made first, we need to make sure that the time of call A + the time it takes to get from the source floor of A to the source floor of B is greater or equal then the time of call B, in this way we will make sure that the elevator has not yet passed the source floor of B.
