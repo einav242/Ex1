@@ -9,8 +9,9 @@ class Elevators:
         self._openTime = float(di["_openTime"])  # open time
         self._startTime = float(di["_startTime"])  # startTime
         self._stopTime = float(di["_stopTime"])  # stopTime
-        self.list_elev = []
+        self.list_elev = []  # list of all the call that allocated to this elevator
 
+    # return the time that takes  go to src to dest
     def time_of_path(self, src, dest) -> float:
         floor = abs(src - dest)
         if floor != 0:
@@ -28,10 +29,3 @@ class Elevators:
         for k in range(len(self.list_elev)):
             st += str(self.list_elev[k])
         return st
-
-    def counter_dir(self, direction):
-        count = 0
-        for k in range(len(self.list_elev)):
-            if self.list_elev[k].direction() == direction:
-                count += 1
-        return count

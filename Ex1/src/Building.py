@@ -13,5 +13,5 @@ class Building:
             self._maxFloor = di["_maxFloor"]  # max_floor
             self.elevators = []  # list of elevators
             for k in di["_elevators"]:
-                self.elevators.append(Elevators(k))  # append elevator k
+                self.elevators.append(Elevators(k))  # append to the list of elevator
             self.number_of_elevator = len(self.elevators)
