@@ -1,5 +1,4 @@
-from Ex1.data.Ex1_input import Ex1_Calls
-from Ex1.data.Ex1_input import Ex1_Buildings
+
 
 import sys
 
@@ -9,7 +8,7 @@ from Ex1.data.Ex1_input.Ex1_Buildings import *
 
 if __name__ == '__main__':
 
-    if len(sys.argv) == 3:
+    if len(sys.argv) == 4:
         algo = SmartElevatorAlgo(sys.argv[1], sys.argv[2], sys.argv[3])
         algo.elevator_assignment()
     else:
@@ -22,4 +21,3 @@ if __name__ == '__main__':
         else:
             algo = SmartElevatorAlgo("B1.json", "Calls_a.csv", "output1.csv")
             algo.elevator_assignment()
-

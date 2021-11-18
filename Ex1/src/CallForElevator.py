@@ -7,6 +7,8 @@ class CallForElevator:
         self.status = int(rows[4])  # status of the elevator
         self.index = int(rows[5])  # index of the elevator
         self.id = -1
+        self.src_demo = int(rows[2])
+        self.dest_demo = int(rows[3])
 
     def __iter__(self):
         return iter([self.str, self.time, self.src, self.dest, self.status, self.index])
