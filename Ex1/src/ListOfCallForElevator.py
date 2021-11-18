@@ -1,6 +1,6 @@
 import csv
 
-from Ex1.src.CallForElevator import CallForElevator
+from CallForElevator import CallForElevator
 
 
 class ListOfCallForElevator:

@@ -1,6 +1,6 @@
 import json
 
-from Ex1.src.Elevators import Elevators
+from Elevators import Elevators
 
 
 class Building:

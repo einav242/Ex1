@@ -2,9 +2,8 @@
 
 import sys
 
-from Ex1.src.SmartAlgo import SmartElevatorAlgo
-from Ex1.data.Ex1_input.Ex1_Calls import *
-from Ex1.data.Ex1_input.Ex1_Buildings import *
+from SmartAlgo import SmartElevatorAlgo
+
 
 if __name__ == '__main__':
 

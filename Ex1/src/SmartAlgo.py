@@ -1,8 +1,8 @@
 import csv
 import sys
 
-from Ex1.src.Building import Building
-from Ex1.src.ListOfCallForElevator import ListOfCallForElevator
+from Building import Building
+from ListOfCallForElevator import ListOfCallForElevator
 
 
 class SmartElevatorAlgo:
