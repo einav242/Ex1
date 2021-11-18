@@ -15,3 +15,4 @@ implementation: each call receives a specific id, the calls that are on the same
 Each elevator has a 'list' field where there is a list of all the calls it needs to make.
 After we divide into the routs we will put each route or a single call into the elevator in such a way that we divide the callss evenly, meaning that we will go through all the elevators and put the call or route into the elevator with the least readings.
 
+## UML
